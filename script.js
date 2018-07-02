@@ -1,3 +1,7 @@
+var mainMoviesList = {
+  listTitle: 'Lista filmów'
+};
+
 var movies = [
   {
     id: 1,
@@ -27,13 +31,13 @@ var movies = [
 
 var MoviesList = React.createClass({
   propTypes: {
-    movie: React.PropTypes.array.isRequired
+    mainMoviesList: React.PropTypes.object.isRequired
   },
 
   render: function() {
     React.createElement('div', {},
-      React.createElement('h1', {}, this.props.movie.listTitle),
-      React.createElement('ul', {}, this.props.movie.moviesList)
+      React.createElement('h1', {}, this.props.mainMoviesList.listTitle),
+      React.createElement('ul', {})
     );
   }
 });
