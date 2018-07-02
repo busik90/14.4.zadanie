@@ -31,13 +31,14 @@ var movies = [
 
 var MoviesList = React.createClass({
   propTypes: {
-    mainMoviesList: React.PropTypes.object.isRequired
+    mainMoviesList: React.PropTypes.object.isRequired,
+    moviesElements: React.PropTypes.object.isRequired
   },
 
   render: function() {
     React.createElement('div', {},
       React.createElement('h1', {}, this.props.mainMoviesList.listTitle),
-      React.createElement('ul', {})
+      React.createElement('ul', {}, this.props.moviesElements)
     );
   }
 });
@@ -83,12 +84,13 @@ var MovieCover = React.createClass({
 });
 
 var element = {
-  moviesList: React.createElement(MoviesList, {mainMoviesList: mainMoviesList}),
   moviesElements: movies.map(function (movie) {
     return React.createElement(Movie, {movie: movie},
       React.createElement(MovieTitle, {movie: movie}),
       React.createElement(MovieDescription, {movie: movie}),
       React.createElement(MovieCover, {movie: movie})
     )
-  })
+  }),
+  
+  moviesList: React.createElement(MoviesList, {mainMoviesList: mainMoviesList, moviesElements: moviesElements})
 }
