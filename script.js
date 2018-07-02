@@ -45,7 +45,7 @@ var MoviesList = React.createClass({
 
 var Movie = React.createClass({
   propTypes: {
-    movie: React.PropTypes.array.isRequired
+    movie: React.PropTypes.object.isRequired
   },
   
   render: function() {
@@ -55,7 +55,7 @@ var Movie = React.createClass({
 
 var MovieTitle = React.createClass({
   propTypes: {
-    movie: React.PropTypes.array.isRequired
+    movie: React.PropTypes.object.isRequired
   },
   
   render: function() {
@@ -65,7 +65,7 @@ var MovieTitle = React.createClass({
 
 var MovieDescription = React.createClass({
   propTypes: {
-    movie: React.PropTypes.array.isRequired
+    movie: React.PropTypes.object.isRequired
   },
   
   render: function() {
@@ -75,7 +75,7 @@ var MovieDescription = React.createClass({
 
 var MovieCover = React.createClass({
   propTypes: {
-    movie: React.PropTypes.array.isRequired
+    movie: React.PropTypes.object.isRequired
   },
   
   render: function() {
@@ -83,14 +83,15 @@ var MovieCover = React.createClass({
   }
 });
 
-var element = {
-  moviesElements: movies.map(function (movie) {
+var moviesElements = movies.map(function (movie) {
+  console.log(typeof(movie));
     return React.createElement(Movie, {movie: movie},
       React.createElement(MovieTitle, {movie: movie}),
       React.createElement(MovieDescription, {movie: movie}),
       React.createElement(MovieCover, {movie: movie})
     )
-  }),
+  });
   
-  moviesList: React.createElement(MoviesList, {mainMoviesList: mainMoviesList, moviesElements: moviesElements})
-}
+var moviesList = React.createElement(MoviesList, {mainMoviesList: mainMoviesList, moviesElements: moviesElements});
+
+ReactDOM.render(moviesList, document.getElementById('app'));
