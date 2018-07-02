@@ -81,3 +81,14 @@ var MovieCover = React.createClass({
     return React.createElement('img', {src: "./images/" + this.props.movie.cover})
   }
 });
+
+var element = {
+  moviesList: React.createElement(MoviesList, {mainMoviesList: mainMoviesList}),
+  moviesElements: movies.map(function (movie) {
+    return React.createElement(Movie, {movie: movie},
+      React.createElement(MovieTitle, {movie: movie}),
+      React.createElement(MovieDescription, {movie: movie}),
+      React.createElement(MovieCover, {movie: movie})
+    )
+  })
+}
