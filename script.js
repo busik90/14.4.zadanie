@@ -30,10 +30,9 @@ var moviesArray = [
 ];
 
 var App = React.createClass({
-  // propTypes: {
-  //   mainMoviesList: React.PropTypes.object.isRequired,
-  //   moviesElements: React.PropTypes.object.isRequired
-  // },
+  propTypes: {
+    appInfo: React.PropTypes.object.isRequired
+  },
 
   render: function() {
     
@@ -47,9 +46,9 @@ var App = React.createClass({
 });
 
 var MoviesList = React.createClass({
-  // propTypes: {
-  //   movie: React.PropTypes.array.isRequired
-  // },
+  propTypes: {
+    moviesArray: React.PropTypes.array.isRequired
+  },
   
   render: function() {
     var moviesList = this.props.moviesArray.map(function(movie) {
@@ -61,6 +60,10 @@ var MoviesList = React.createClass({
 });
 
 var Movie = React.createClass({
+  propTypes: {
+    movie: React.PropTypes.object.isRequired
+  },
+
   render: function() {
     return (
       React.createElement('li', {className: 'movie-box'},
@@ -73,9 +76,9 @@ var Movie = React.createClass({
 });
 
 var MovieTitle = React.createClass({
-  // propTypes: {
-  //   movie: React.PropTypes.array.isRequired
-  // },
+  propTypes: {
+    movie: React.PropTypes.object.isRequired
+  },
   
   render: function() {
     return React.createElement('h2', {className: 'movie-title'}, this.props.movie.title)
@@ -83,9 +86,9 @@ var MovieTitle = React.createClass({
 });
 
 var MovieDescription = React.createClass({
-  // propTypes: {
-  //   movie: React.PropTypes.array.isRequired
-  // },
+  propTypes: {
+    movie: React.PropTypes.object.isRequired
+  },
   
   render: function() {
     return React.createElement('p', {className: 'movie-desc'}, this.props.movie.desc)
@@ -93,9 +96,9 @@ var MovieDescription = React.createClass({
 });
 
 var MovieCover = React.createClass({
-  // propTypes: {
-  //   movie: React.PropTypes.array.isRequired
-  // },
+  propTypes: {
+    movie: React.PropTypes.object.isRequired
+  },
   
   render: function() {
     return React.createElement('img', {className: 'movie-cover', src: "./images/" + this.props.movie.cover})
