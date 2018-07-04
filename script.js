@@ -1,8 +1,8 @@
-var mainMoviesList = {
-  listTitle: 'Lista filmów'
+var appInfoArray = {
+  appTitle: 'Lista filmów'
 };
 
-var movies = [
+var moviesArray = [
   {
     id: 1,
     title: 'Harry Potter',
@@ -29,29 +29,46 @@ var movies = [
   }
 ];
 
-var MoviesList = React.createClass({
+var App = React.createClass({
   // propTypes: {
   //   mainMoviesList: React.PropTypes.object.isRequired,
   //   moviesElements: React.PropTypes.object.isRequired
   // },
 
   render: function() {
+    
     return (
-      React.createElement('div', {},
-        React.createElement('h1', {}, this.props.mainMoviesList.listTitle),
-        React.createElement('ul', {}, this.props.moviesElements)
+      React.createElement('div', {className: 'app'},
+        React.createElement('h1', {className: 'app-title'}, this.props.appInfo.appTitle),
+        React.createElement(MoviesList, {moviesArray: moviesArray}, {})
       )
     )
   }
 });
 
-var Movie = React.createClass({
+var MoviesList = React.createClass({
   // propTypes: {
   //   movie: React.PropTypes.array.isRequired
   // },
   
   render: function() {
-    return React.createElement('li', {})
+    var moviesList = this.props.moviesArray.map(function(movie) {
+      return React.createElement(Movie, {movie: movie, key: movie.id}) // Dodać tutaj id, czy bezpośrednio w elemencie 'li'?
+    });
+
+    return React.createElement('ul', {className: 'movies-list'}, moviesList)
+  }
+});
+
+var Movie = React.createClass({
+  render: function() {
+    return (
+      React.createElement('li', {className: 'movie-box'},
+        React.createElement(MovieTitle, {movie: this.props.movie}),
+        React.createElement(MovieDescription, {movie: this.props.movie}),
+        React.createElement(MovieCover, {movie: this.props.movie})
+      )
+    )
   }
 });
 
@@ -61,7 +78,7 @@ var MovieTitle = React.createClass({
   // },
   
   render: function() {
-    return React.createElement('h2', {}, this.props.movie.title)
+    return React.createElement('h2', {className: 'movie-title'}, this.props.movie.title)
   }
 });
 
@@ -71,7 +88,7 @@ var MovieDescription = React.createClass({
   // },
   
   render: function() {
-    return React.createElement('p', {}, this.props.movie.desc)
+    return React.createElement('p', {className: 'movie-desc'}, this.props.movie.desc)
   }
 });
 
@@ -81,22 +98,10 @@ var MovieCover = React.createClass({
   // },
   
   render: function() {
-    return React.createElement('img', {src: "./images/" + this.props.movie.cover})
+    return React.createElement('img', {className: 'movie-cover', src: "./images/" + this.props.movie.cover})
   }
 });
-
-var moviesTitles = movies.map(function(movie) {
-  return React.createElement(MovieTitle, {movie: movie, key: movie.id})
-});
-
-var moviesDescriptions = movies.map(function(movie) {
-  return React.createElement(MovieDescription, {movie: movie, key: movie.id})
-});
-
-var moviesCovers = movies.map(function(movie) {
-  return React.createElement(MovieCover, {movie: movie, key: movie.id})
-});
   
-var moviesList = React.createElement(MoviesList, {mainMoviesList: mainMoviesList, moviesElements: movie});
+var app = React.createElement(App, {appInfo: appInfoArray});
 
-ReactDOM.render(moviesList, document.getElementById('app'));
+ReactDOM.render(app, document.getElementById('app'));
