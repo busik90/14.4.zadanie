@@ -38,7 +38,7 @@ var App = React.createClass({
     return (
       React.createElement('div', {className: 'app'},
         React.createElement('h1', {className: 'app-title'}, this.props.appInfo.appTitle),
-        React.createElement(MoviesList, {moviesArray: moviesArray}, {})
+        React.createElement(MoviesList, {moviesArray: moviesArray})
       )
     )
   }
