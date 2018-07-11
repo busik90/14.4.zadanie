@@ -1,9 +1,9 @@
 var MovieDescription = React.createClass({
   propTypes: {
-    movie: React.PropTypes.object.isRequired
+    movieDesc: React.PropTypes.string.isRequired
   },
   
   render: function() {
-    return React.createElement('p', {className: 'movie-desc'}, this.props.movie.desc)
+    return React.createElement('p', {className: 'movie-desc'}, this.props.movieDesc)
   }
 });

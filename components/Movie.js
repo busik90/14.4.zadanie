@@ -6,9 +6,9 @@ var Movie = React.createClass({
   render: function() {
     return (
       React.createElement('li', {className: 'movie-box'},
-        React.createElement(MovieTitle, {movie: this.props.movie}),
-        React.createElement(MovieDescription, {movie: this.props.movie}),
-        React.createElement(MovieCover, {movie: this.props.movie})
+        React.createElement(MovieTitle, {movieTitle: this.props.movie.title}),
+        React.createElement(MovieDescription, {movieDesc: this.props.movie.desc}),
+        React.createElement(MovieCover, {movieCover: this.props.movie.cover})
       )
     )
   }
